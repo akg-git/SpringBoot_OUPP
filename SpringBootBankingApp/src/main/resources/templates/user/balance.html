@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Account Balance</title>
+	<!-- Add your CSS links or stylesheets here -->
+</head>
+
+<body>
+
+	<div>
+		<h2>Welcome, <span th:text="${user.name}"></span>!</h2>
+		<p>Your Account Balance: <span th:text="${account.balance}"></span></p>
+		<!-- Deposit Form -->
+		<form th:action="@{/deposit}" method="post">
+			<input type="hidden" name="userId" th:value="${user.id}" />
+			<label for="depositAmount">Deposit Amount:</label>
+			<input type="number" step="0.01" name="amount" required />
+			<button type="submit">Deposit</button>
+		</form>
+		<!-- Withdraw Form -->
+		<form th:action="@{/withdraw}" method="post">
+			<input type="hidden" name="userId" th:value="${user.id}" />
+			<label for="withdrawAmount">Withdraw Amount:</label>
+			<input type="number" step="0.01" name="amount" required />
+			<button type="submit">Withdraw</button>
+		</form>
+
+		<!-- Transfer Form -->
+		<form th:action="@{/transfer}" method="post">
+			<input type="hidden" name="userId" th:value="${user.id}" />
+			<label for="transferAmount">Transfer Amount:</label>
+			<input type="number" step="0.01" name="amount" required />
+			<button type="submit">Transfer</button>
+		</form>
+
+
+
+
+
+		<!-- Display Error Message (if any) -->
+		<p th:if="${param.error != null}" th:text="${param.error}"></p>
+
+		<!-- Add your additional HTML content and styling here -->
+	</div>
+
+</body>
+
+</html>
